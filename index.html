@@ -523,60 +523,9 @@
       </div>
     </div>
 
-    <!-- S3: Fuentes -->
+    <!-- S3: Métricas -->
     <div class="card">
-      <div class="section-label"><span class="step-num">3</span><i class="ti ti-database"></i> Fuentes de datos</div>
-      <div class="field">
-        <label>Fuentes disponibles (Enter para agregar) <span class="req">*</span></label>
-        <div id="tags-fuentes" class="tag-wrap">
-          <input class="tag-input" id="ti-fuentes" placeholder="Escribe una fuente y presiona Enter...">
-        </div>
-      </div>
-      <div class="two-col">
-        <div class="field">
-          <label>Tipo de conexión principal</label>
-          <select id="f_conex">
-            <option value="">Seleccionar...</option>
-            <option>Base de datos SQL (directo)</option>
-            <option>Archivo QVD</option>
-            <option>API REST</option>
-            <option>Excel / CSV</option>
-            <option>Data Warehouse (Snowflake, Redshift, BQ)</option>
-            <option>SAP HANA / BW</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Frecuencia de actualización</label>
-          <select id="f_refresh">
-            <option value="">Seleccionar...</option>
-            <option>En tiempo real (Direct Query)</option>
-            <option>Cada hora</option>
-            <option>Diaria (noche)</option>
-            <option>Manual</option>
-            <option>Otra</option>
-          </select>
-        </div>
-      </div>
-      <div class="field">
-        <label>Tablas / entidades clave</label>
-        <input type="text" id="f_tablas" placeholder="Ej: FACT_VENTAS, DIM_CLIENTE, DIM_TIEMPO">
-      </div>
-      <div class="field">
-        <label>Transformaciones previas (ETL / QVD)</label>
-        <select id="f_etl">
-          <option value="">Seleccionar...</option>
-          <option>Sí — QVDs ya disponibles</option>
-          <option>Sí — script de carga propio</option>
-          <option>No — carga directa desde fuente</option>
-          <option>Mixto</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- S4: Métricas -->
-    <div class="card">
-      <div class="section-label"><span class="step-num">4</span><i class="ti ti-calculator"></i> Métricas y dimensiones</div>
+      <div class="section-label"><span class="step-num">3</span><i class="ti ti-calculator"></i> Métricas y dimensiones</div>
       <div class="field">
         <label>KPIs / métricas principales <span class="req">*</span></label>
         <div id="kpi-list"></div>
@@ -606,9 +555,9 @@
       </div>
     </div>
 
-    <!-- S5: Visualizaciones -->
+    <!-- S4: Visualizaciones -->
     <div class="card">
-      <div class="section-label"><span class="step-num">5</span><i class="ti ti-layout-dashboard"></i> Visualizaciones y layout</div>
+      <div class="section-label"><span class="step-num">4</span><i class="ti ti-layout-dashboard"></i> Visualizaciones y layout</div>
       <div class="field">
         <label>Objetos visuales requeridos</label>
         <div class="pill-group" id="viz-group">
@@ -652,15 +601,15 @@
       </div>
     </div>
 
-    <!-- S6: Lógica -->
+    <!-- S5: Lógica -->
     <div class="card">
-      <div class="section-label"><span class="step-num">6</span><i class="ti ti-code"></i> Lógica de negocio</div>
+      <div class="section-label"><span class="step-num">5</span><i class="ti ti-code"></i> Lógica visual y expresiones</div>
       <div class="field">
-        <label>Reglas de negocio críticas</label>
+        <label>Reglas de negocio a reflejar visualmente</label>
         <textarea id="f_reglas" placeholder="Ej: Excluir devoluciones, solo ventas confirmadas, clientes activos con más de 1 compra..."></textarea>
       </div>
       <div class="field">
-        <label>Semáforos / umbrales de alerta</label>
+        <label>Semáforos / umbrales de alerta (colores)</label>
         <input type="text" id="f_semaforos" placeholder="Ej: Rojo < 80%, Amarillo 80-95%, Verde ≥ 95%">
       </div>
       <div class="two-col">
@@ -684,19 +633,80 @@
           </select>
         </div>
       </div>
+    </div>
+
+    <!-- S6: Narrativa e interacciones -->
+    <div class="card">
+      <div class="section-label"><span class="step-num">6</span><i class="ti ti-route"></i> Narrativa e interacciones</div>
       <div class="field">
-        <label>Volumen de datos</label>
-        <div class="range-wrap">
-          <span style="font-size:11px;color:var(--text3)">Bajo</span>
-          <input type="range" id="f_vol" min="1" max="5" step="1" value="2" oninput="updateVol(this)">
-          <span style="font-size:11px;color:var(--text3)">Alto</span>
-          <span class="range-val" id="f_vol_val">2</span>
+        <label>¿Qué historia debe contar el informe?</label>
+        <textarea id="f_narrativa" placeholder="Ej: El usuario debe ver primero el resumen general, luego poder profundizar por región y finalmente comparar contra el presupuesto..."></textarea>
+      </div>
+      <div class="field">
+        <label>Flujo de navegación entre hojas</label>
+        <select id="f_flujo">
+          <option value="">Seleccionar...</option>
+          <option>Lineal — el usuario sigue un orden definido</option>
+          <option>Libre — el usuario navega sin restricción</option>
+          <option>Jerárquico — resumen → detalle → transacción</option>
+          <option>Por perfil — cada usuario ve su vista predeterminada</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿Se requieren botones de navegación entre hojas?</label>
+        <select id="f_botones">
+          <option value="">Seleccionar...</option>
+          <option>Sí — botones visibles en cada hoja</option>
+          <option>Sí — solo en hoja resumen</option>
+          <option>No — usar pestañas nativas de Qlik</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Comportamiento de selecciones</label>
+        <div class="pill-group" id="sel-group">
+          <label class="pill"><input type="checkbox"> Selecciones persistentes entre hojas</label>
+          <label class="pill"><input type="checkbox"> Bloqueo de ciertas dimensiones</label>
+          <label class="pill"><input type="checkbox"> Selección por defecto al abrir</label>
+          <label class="pill"><input type="checkbox"> Barra de selecciones visible siempre</label>
         </div>
-        <div style="font-size:11px;color:var(--text3);margin-top:6px" id="vol_label">1M – 10M de registros</div>
       </div>
     </div>
 
-    <!-- S7: Alcance -->
+    <!-- S7: Experiencia de usuario -->
+    <div class="card">
+      <div class="section-label"><span class="step-num">7</span><i class="ti ti-eye"></i> Experiencia de usuario (UX)</div>
+      <div class="field">
+        <label>¿Se requieren tooltips o textos de ayuda en los objetos?</label>
+        <select id="f_tooltips">
+          <option value="">Seleccionar...</option>
+          <option>Sí — en todos los objetos principales</option>
+          <option>Sí — solo en KPIs y métricas complejas</option>
+          <option>No</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿Se muestran etiquetas de valor en los gráficos?</label>
+        <select id="f_etiquetas">
+          <option value="">Seleccionar...</option>
+          <option>Sí — en todos los gráficos</option>
+          <option>Sí — solo en los más relevantes</option>
+          <option>No — el usuario hace hover para ver</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Elementos adicionales de UX requeridos</label>
+        <div class="pill-group" id="ux-group">
+          <label class="pill"><input type="checkbox"> Imagen / logo corporativo en el header</label>
+          <label class="pill"><input type="checkbox"> Indicador de última actualización</label>
+          <label class="pill"><input type="checkbox"> Mensaje cuando no hay datos</label>
+          <label class="pill"><input type="checkbox"> Resaltar valores fuera de rango</label>
+          <label class="pill"><input type="checkbox"> Ordenamiento automático de tablas</label>
+          <label class="pill"><input type="checkbox"> Mini gráficos (sparklines) en tablas</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- S8: Alcance y entrega -->
     <div class="card">
       <div class="section-label"><span class="step-num">7</span><i class="ti ti-calendar"></i> Alcance y entrega</div>
       <div class="two-col">
@@ -727,7 +737,7 @@
       </div>
       <div class="field">
         <label>Comentarios adicionales</label>
-        <textarea id="f_extra" placeholder="Restricciones técnicas, integraciones especiales, antecedentes relevantes..."></textarea>
+        <textarea id="f_extra" placeholder="Referencia visual, informe existente que sirva de guía, preferencias de diseño..."></textarea>
       </div>
     </div>
 
@@ -895,7 +905,26 @@
     const vol = ['','Menos de 1M de registros','1M – 10M de registros','10M – 100M de registros','100M – 1B de registros','Más de 1B (optimización crítica)'];
     const volVal = v('f_vol') || '2';
 
-    const prompt = `Actúa como un arquitecto senior de Qlik Reporting. Con base en la siguiente información recopilada del formulario, genera una jerarquía de desarrollo MUY DETALLADA para construir el informe en Qlik Reporting. Incluye cada capa del proceso: Arquitectura visual, seguridad y distribución. Usa una estructura jerárquica numerada con subtítulos claros.
+    const prompt = `Actúa como un experto en diseño visual de informes en Qlik Reporting. Con base en la información del formulario, genera una jerarquía DETALLADA y ORDENADA que guíe al desarrollador para diseñar y construir el informe VISUALMENTE en Qlik Reporting.
+
+IMPORTANTE — ALCANCE ESTRICTO:
+- Enfócate ÚNICAMENTE en el diseño visual del informe: hojas, objetos, layout, métricas, dimensiones, expresiones y set analysis.
+- NO incluyas nada relacionado con: script de carga, modelo de datos, QVD, ETL, conexiones a fuentes, Section Access, ni configuración de servidor.
+- Sí puedes proponer expresiones de set analysis y variables de Qlik, pero solo en el contexto de cómo configurarlas visualmente en cada objeto del informe.
+- La jerarquía debe ser práctica: el desarrollador debe poder abrir Qlik Reporting y seguir los pasos uno a uno para construir el informe.
+
+Estructura la jerarquía con estos niveles:
+1. Organización general del informe (hojas y su propósito)
+2. Diseño de cada hoja (objetos visuales, posición sugerida, título)
+3. Configuración de cada objeto (dimensiones, métricas, expresiones, set analysis si aplica)
+4. Semáforos, colores y alertas visuales
+5. Filtros, variables y paneles de selección
+6. Narrativa visual — flujo de lectura, historia que cuenta el informe, navegación entre hojas
+7. Experiencia de usuario — tooltips, etiquetas, comportamiento de selecciones, elementos de UX
+8. Formato, tema visual y adaptación al dispositivo
+9. Distribución y formato de entrega (PDF, Excel, etc.)
+
+Usa numeración jerárquica clara (1., 1.1, 1.1.1) y sé muy específico en cada paso.
 
 === INFORMACIÓN DEL FORMULARIO ===
 
@@ -908,18 +937,11 @@
 
 👥 USUARIOS FINALES
 - Tipos de usuario: ${usuarios}
-- [Ejecutivo] Detalle esperado: ${v('f_eje_detalle') || 'N/A'} | Formato: ${v('f_eje_formato') || 'N/A'} | KPIs críticos: ${v('f_eje_kpis') || 'N/A'}
-- [Gerente] Comparación con metas: ${v('f_ger_metas') || 'N/A'} | Dimensiones: ${v('f_ger_dim') || 'N/A'}
+- [Ejecutivo] Nivel de detalle: ${v('f_eje_detalle') || 'N/A'} | Formato de entrega: ${v('f_eje_formato') || 'N/A'} | KPIs críticos: ${v('f_eje_kpis') || 'N/A'}
+- [Gerente] Comparación con metas: ${v('f_ger_metas') || 'N/A'} | Dimensiones de desglose: ${v('f_ger_dim') || 'N/A'}
 - [Analista] Exportación: ${v('f_ana_export') || 'N/A'} | Granularidad: ${v('f_ana_gran') || 'N/A'} | Set analysis: ${v('f_ana_set') || 'N/A'}
-- [Operativo] Row-Level Security: ${v('f_op_rls') || 'N/A'}
+- [Operativo] Seguridad por usuario: ${v('f_op_rls') || 'N/A'}
 - [Externo] Canal: ${v('f_ext_canal') || 'N/A'} | Autenticación: ${v('f_ext_auth') || 'N/A'}
-
-🗄️ FUENTES DE DATOS
-- Fuentes disponibles: ${getTags('tags-fuentes') || 'No especificadas'}
-- Tipo de conexión: ${v('f_conex') || 'No especificado'}
-- Frecuencia de actualización: ${v('f_refresh') || 'No especificada'}
-- Tablas / entidades clave: ${v('f_tablas') || 'No especificadas'}
-- ETL previo: ${v('f_etl') || 'No especificado'}
 
 📊 MÉTRICAS Y DIMENSIONES
 - KPIs / Métricas: ${getKPIs() || 'No especificados'}
@@ -928,27 +950,37 @@
 - Benchmarks temporales: ${getChecked('bench-group') || 'Ninguno'}
 
 📐 VISUALIZACIONES Y LAYOUT
-- Objetos visuales: ${getChecked('viz-group') || 'No especificados'}
+- Objetos visuales requeridos: ${getChecked('viz-group') || 'No especificados'}
 - Número de hojas: ${v('f_sheets') || 'No especificado'}
 - Dispositivo principal: ${v('f_device') || 'No especificado'}
 - Tema visual: ${v('f_tema') || 'No especificado'}
 
-⚙️ LÓGICA DE NEGOCIO
-- Reglas de negocio: ${v('f_reglas') || 'Ninguna especificada'}
-- Semáforos / umbrales: ${v('f_semaforos') || 'No especificados'}
+⚙️ LÓGICA VISUAL Y EXPRESIONES
+- Reglas de negocio a reflejar visualmente: ${v('f_reglas') || 'Ninguna especificada'}
+- Semáforos / umbrales de color: ${v('f_semaforos') || 'No especificados'}
 - Set analysis avanzado: ${v('f_setanalysis') || 'No especificado'}
 - Variables de Qlik: ${v('f_vars') || 'No especificadas'}
-- Volumen de datos: ${vol[+volVal]}
 
-🚀 ALCANCE Y ENTREGA
+🗺️ NARRATIVA E INTERACCIONES
+- Historia que debe contar el informe: ${v('f_narrativa') || 'No especificada'}
+- Flujo de navegación entre hojas: ${v('f_flujo') || 'No especificado'}
+- Botones de navegación: ${v('f_botones') || 'No especificado'}
+- Comportamiento de selecciones: ${getChecked('sel-group') || 'No especificado'}
+
+👁️ EXPERIENCIA DE USUARIO (UX)
+- Tooltips / textos de ayuda: ${v('f_tooltips') || 'No especificado'}
+- Etiquetas de valor en gráficos: ${v('f_etiquetas') || 'No especificado'}
+- Elementos adicionales de UX: ${getChecked('ux-group') || 'Ninguno'}
+
+🚀 ENTREGA
 - Ambiente destino: ${v('f_ambiente') || 'No especificado'}
 - Distribución programada: ${v('f_dist') || 'No especificada'}
-- Usuarios / grupos: ${v('f_grupos') || 'No especificados'}
+- Usuarios / grupos con acceso: ${v('f_grupos') || 'No especificados'}
 - Comentarios adicionales: ${v('f_extra') || 'Ninguno'}
 
 === FIN DEL FORMULARIO ===
 
-Por favor genera la jerarquía completa y detallada que debe seguir el desarrollador para crear el informe en Qlik Reporting, paso a paso.`;
+Genera la jerarquía visual completa y detallada. Recuerda: SOLO diseño visual, sin script ni modelo de datos.`;
 
     try {
       const response = await fetch('https://api.anthropic.com/v1/messages', {
